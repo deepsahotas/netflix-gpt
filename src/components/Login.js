@@ -3,17 +3,15 @@ import Header from './Header';
 import { checkValidData } from '../utils/validate';
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isSignInFrom, setIsSignInFrom] = useState(true);
   const [formData, setFormData] = useState({});
@@ -47,8 +45,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(auth.currentUser, {
             displayName: formData.fullName,
-            photoURL:
-              'https://ashallendesign.ams3.cdn.digitaloceanspaces.com/rMbsGOyK6i1KjNkbXff8qLohzM1nWQA8HNGwHF0J.png',
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               // Profile updated!
@@ -61,35 +58,29 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate('/browse');
             })
             .catch((error) => {
               // An error occurred
               setErrorMessage(error.message);
             });
-          console.log(user);
           alert('Account Created ! Please Sign in Now !');
           setIsSignInFrom(true);
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(setErrorMessage(errorCode + ' - ' + errorMessage));
-          navigate('/');
+          setErrorMessage(errorCode + ' - ' + errorMessage);
         });
     } else {
       //sign in logic
       signInWithEmailAndPassword(auth, formData.email, formData.password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
-          navigate('/browse');
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(setErrorMessage(errorCode + ' - ' + errorMessage));
-          navigate('/');
+          setErrorMessage(errorCode + ' - ' + errorMessage);
         });
     }
   };
