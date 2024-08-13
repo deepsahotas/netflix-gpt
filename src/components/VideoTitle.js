@@ -4,7 +4,7 @@ const VideoTitle = ({ title, overview }) => {
   return (
     <div className="pt-60 px-12 absolute bg-gradient-to-r from-black h-screen w-screen aspect-ratio">
       <h1 className="text-5xl font-bold text-white">{title}</h1>
-      <p className="text-lg py-6 w-1/4 text-white">{overview}</p>
+      <p className="text-md py-6 w-1/4 text-white">{overview}</p>
       <div className="flex gap-2">
         <button className="bg-white text-black py-3 px-14 text-md rounded-md hover:bg-opacity-80">
           Play
