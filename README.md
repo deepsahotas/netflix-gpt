@@ -100,3 +100,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Embedded the you tube video and make it autoplay with mute
 - Added tailwind classes to make it awesome
 - Build secondary component
+- Build movie list
+- Build movie card
+- done css for browse page
+- use popular movie custom hook
+- GPT search page
+- GPT search bar
+- ADD multi-language feature in app
+- Integrate GPT API
+- get open ai api key
+- fetched get movie suggestions from tmdb
+- created gpt slice added data
+- reuse movielist component in gpt result
+- Memoization
+- adding .env file in repo and git ignore file
+- resonsive website
